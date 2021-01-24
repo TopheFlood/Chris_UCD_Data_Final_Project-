@@ -22,6 +22,7 @@ data.isna().sum().plot(kind="bar")
 
 #To show graph
 plt.show()
+
 #To save the graph
 plt.savefig()
 
@@ -66,7 +67,7 @@ region_counts = regions["region"].value_counts()
 #prnted the count for regions and type
 print(region_counts)
 
-#found the amoent in each typeconventional 9126 organic 9123
+#found the amount in each type conventional 9126 organic 9123
 type_counts = data["type"].value_counts()
 
 #printed the type count
@@ -82,3 +83,20 @@ print(conventional_volume)
 organic_volume= organic["Total Volume"].sum()
 
 print(organic_volume)
+
+#found total volume
+total_volume= data["Total Volume"].sum()
+
+print(total_volume)
+
+#found total volume by type
+volume_by_type = data.groupby("type")["Total Volume"].sum()
+
+#printed data
+print(volume_by_type)
+
+#found proportion of sales by type conventional 0.971902 organic 0.028098
+proportion_of_vol_by_type= volume_by_type/total_volume
+
+#printed data
+print(proportion_of_vol_by_type)
