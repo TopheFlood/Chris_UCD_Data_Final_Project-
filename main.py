@@ -24,6 +24,17 @@ plt.show()
 #To save the graph
 plt.savefig()
 
+#Grouping by organic
+organic= data[(data["type"]== "organic")]
+
+#printed the new dataframe
+print(organic.head())
+
+#Grouping by conventional
+conventional= data[(data["type"]== "conventional")]
+
+#printed the new data frame
+print(conventional.head())
 
 
 
