@@ -110,3 +110,20 @@ data_sorted_region= (data.sort_index(level="region"))
 #sliced using iloc to show the first 10 rows
 print(data_sorted_region.iloc[0 : 10])
 
+import numpy as np
+
+#Used numpy for average price 1.405978409775878
+np_average_price= np.array(data["AveragePrice"]).mean()
+
+print(np_average_price)
+
+#used numpy array to print if < 1.4 or not
+cheap= np.array(data["AveragePrice"]< 1.4)
+
+print(cheap)
+
+#used sort index on year
+date_ind = data.set_index("year").sort_index()
+
+#used loc to print years between 2015 and 2016
+print(date_ind.loc["2015":"2016"])
