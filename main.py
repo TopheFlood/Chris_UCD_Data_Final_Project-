@@ -26,6 +26,7 @@ plt.show()
 #To save the graph
 plt.savefig()
 
+
 #created new dataframe by organic
 organic= data[(data["type"]== "organic")]
 
@@ -100,3 +101,12 @@ proportion_of_vol_by_type= volume_by_type/total_volume
 
 #printed data
 print(proportion_of_vol_by_type)
+
+print(data.sort_index())
+
+#sorted data by region
+data_sorted_region= (data.sort_index(level="region"))
+
+#sliced using iloc to show the first 10 rows
+print(data_sorted_region.iloc[0 : 10])
+
