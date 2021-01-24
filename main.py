@@ -1,4 +1,8 @@
 import pandas as pd
 
-data= pd.read_csv(avacados_data.csv)
+data= pd.read_csv("avacados_data.csv")
+
+print(data.head())
+
+
 
