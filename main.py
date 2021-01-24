@@ -54,3 +54,31 @@ print(conventional["AveragePrice"].median())
 
 #found median of organic average price 1.63
 print(organic["AveragePrice"].median())
+
+#used drop duplicates to see the individual if every region had both types type
+regions = data.drop_duplicates(subset = ["region" ,"type"])
+
+print(regions.head())
+
+#counted the number of regions that had each type
+region_counts = regions["region"].value_counts()
+
+#prnted the count for regions and type
+print(region_counts)
+
+#found the amoent in each typeconventional 9126 organic 9123
+type_counts = data["type"].value_counts()
+
+#printed the type count
+print(type_counts)
+
+#found the total volume for conventional 15087220911.31
+conventional_volume= conventional["Total Volume"].sum()
+
+#printed conventional value
+print(conventional_volume)
+
+#found the total volume of organic 436181682.0899999
+organic_volume= organic["Total Volume"].sum()
+
+print(organic_volume)
