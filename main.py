@@ -5,6 +5,13 @@ data= pd.read_csv("avacados_data.csv")
 #First look at data
 print(data.head())
 
+#looked at the shape of the the data (18249,14)
+print(data.shape)
+
+#Created a for loop
+for lab, row in data.iterrows():
+    print(str(lab) + ": " + str(row["region"]))
+
 # to see the largest average price it was 3.25
 print(data["AveragePrice"].max())
 
@@ -32,6 +39,7 @@ organic= data[(data["type"]== "organic")]
 
 #printed the new dataframe
 print(organic.head())
+print(organic.shape)
 
 #created new dataframe by conventional
 conventional= data[(data["type"]== "conventional")]
@@ -60,7 +68,7 @@ print(organic["AveragePrice"].median())
 #used drop duplicates to see the individual if every region had both types type
 regions = data.drop_duplicates(subset = ["region" ,"type"])
 
-print(regions.head())
+#print(regions.head())
 
 #counted the number of regions that had each type
 region_counts = regions["region"].value_counts()
@@ -102,7 +110,7 @@ proportion_of_vol_by_type= volume_by_type/total_volume
 #printed data
 print(proportion_of_vol_by_type)
 
-print(data.sort_index())
+#print(data.sort_index())
 
 #sorted data by region
 data_sorted_region= (data.sort_index(level="region"))
@@ -127,3 +135,5 @@ date_ind = data.set_index("year").sort_index()
 
 #used loc to print years between 2015 and 2016
 print(date_ind.loc["2015":"2016"])
+
+#Merging dataframes
