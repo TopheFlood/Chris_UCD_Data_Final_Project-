@@ -68,7 +68,7 @@ print(organic["AveragePrice"].median())
 #used drop duplicates to see the individual if every region had both types type
 regions = data.drop_duplicates(subset = ["region" ,"type"])
 
-#print(regions.head())
+print(regions.head())
 
 #counted the number of regions that had each type
 region_counts = regions["region"].value_counts()
@@ -110,7 +110,7 @@ proportion_of_vol_by_type= volume_by_type/total_volume
 #printed data
 print(proportion_of_vol_by_type)
 
-#print(data.sort_index())
+print(data.sort_index())
 
 #sorted data by region
 data_sorted_region= (data.sort_index(level="region"))
@@ -136,4 +136,66 @@ date_ind = data.set_index("year").sort_index()
 #used loc to print years between 2015 and 2016
 print(date_ind.loc["2015":"2016"])
 
-#Merging dataframes
+West = data[(data["region"]== "West")]
+
+#print(West.head())
+print(West.shape)
+
+#Found total volume of West 1086779155.75
+total_west_volume= West["Total Volume"].sum()
+print(total_west_volume)
+
+Total_US = data[(data["region"]== "TotalUS")]
+print(Total_US.head())
+print(Total_US.shape)
+
+#Found total volume un US 5864740181.799999
+total_us_volume= Total_US["Total Volume"].sum()
+print(total_us_volume)
+
+#west_us_total_merge = total_us_volume.merge(total_west_volume, on= ["Date", "region"])
+
+print(west_us_total_merge.head())
+
+new_data = data[["AveragePrice","Total Volume","Total Bags","Small Bags","Large Bags","XLarge Bags","type","year","region"]]
+
+print(new_data.head())
+
+volume_grater_than_100000 = new_data[new_data["Total Volume"] > 100000]
+
+#printed the data
+print(volume_grater_than_100000.head())
+#(9301, 9)
+print(volume_grater_than_100000.shape)
+import seaborn as sns
+
+sns.set_style("whitegrid")
+
+g= sns.relplot(x= "year",
+            y= "AveragePrice",
+            data= new_data,
+            kind= "line",
+            hue= "type",
+            size= "type",
+            ci= None)
+
+g.fig.suptitle("Avacados by type and average cost")
+g.set(xlabel="Year",
+       ylabel="Average price")
+
+#plt.show()
+sns.set_style("whitegrid")
+
+g= sns.relplot(x= "year",
+            y= "Total Volume",
+            data= new_data,
+            kind= "line",
+            hue= "type",
+            size= "type",
+            ci= None)
+
+g.fig.suptitle("Avacados by type and total volume")
+g.set(xlabel="Year",
+       ylabel="Total volume")
+
+plt.show()
