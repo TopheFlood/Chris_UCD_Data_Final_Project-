@@ -44,3 +44,6 @@ volume_by_type = data.groupby("type")["Total Volume"].sum()
 #Created a for loop
 #for lab, row in data.iterrows():
  #   print(str(lab) + ": " + str(row["region"]))
+
+ #Merging data frames - Not useful as all from one original data set but this is method
+west_us_total_merge = total_us_volume.merge(total_west_volume, on= ["Date", "region"])

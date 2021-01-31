@@ -8,7 +8,7 @@ print(data.head())
 #looked at the shape of the the data (18249,14)
 print(data.shape)
 
-#Created a for loop
+#Created a for loop to print a list of regions
 for lab, row in data.iterrows():
     print(str(lab) + ": " + str(row["region"]))
 
@@ -54,7 +54,7 @@ print(data["AveragePrice"].mean())
 print(data["AveragePrice"].median())
 
 #found mean of conventional average price 1.1580396668858208
-print(conventional["AveragePrice"].mean())
+#print(conventional["AveragePrice"].mean())
 
 #found mean of organic average price 1.6539986846432095
 print(organic["AveragePrice"].mean())
@@ -153,7 +153,13 @@ print(Total_US.shape)
 total_us_volume= Total_US["Total Volume"].sum()
 print(total_us_volume)
 
-#west_us_total_merge = total_us_volume.merge(total_west_volume, on= ["Date", "region"])
+percent_of_west_as_proportion_of_total_us= total_west_volume/total_us_volume
+
+#18.5%
+print(percent_of_west_as_proportion_of_total_us)
+
+#Merging data frames - Not useful as all from one original data set but this is method
+west_us_total_merge = total_us_volume.merge(total_west_volume, on= ["Date", "region"])
 
 print(west_us_total_merge.head())
 
@@ -165,8 +171,11 @@ volume_grater_than_100000 = new_data[new_data["Total Volume"] > 100000]
 
 #printed the data
 print(volume_grater_than_100000.head())
+
 #(9301, 9)
 print(volume_grater_than_100000.shape)
+
+
 import seaborn as sns
 
 sns.set_style("whitegrid")
