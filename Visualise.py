@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 data.isna().sum().plot(kind="bar")
 
 #To show graph
-#plt.show()
+plt.show()
 
 #To save the graph
-#plt.savefig()
+plt.savefig()
 
 sns.set_style("whitegrid")
 
